@@ -12,5 +12,8 @@ namespace Business.Abstract
     {
         //ampulden using categoty entites ekledik,bağlı olan folderler
         List<Product> GetAll();
+        List<Product> GelAllByCategoryId(int id);
+        List<Product> GelAllByUnitPrice(decimal min, decimal max);
+
     }
 }

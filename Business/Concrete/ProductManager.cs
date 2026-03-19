@@ -20,6 +20,18 @@ namespace Business.Concrete
             _ProductDal = productDal;
         }
 
+        public List<Product> GelAllByCategoryId(int id)
+        {
+            return _ProductDal.GetAll(p => p.CategoryId == id);
+        }
+
+        public List<Product> GelAllByUnitPrice(decimal min, decimal max)
+        {
+            return _ProductDal.GetAll(p => p.UnitPrice >= min && p.UnitPrice <= max);
+
+        }
+
+
         public List<Product> GetAll()
         {
             //iş kodları
