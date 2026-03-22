@@ -1,5 +1,4 @@
-﻿using Entities.Abstract;
-using Entities.Concrete;
+﻿using Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +6,9 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Abstract
+
+//core klasöründe kullanacağımız tüm temel yapıları kuracağız. ilk iş olarak DataAccess altındaki abstract altındaki IEntitiyRepository i core altındaki DataAccess klasörüne taşıdık.
+namespace Core.DataAccess
 {
  //Bu şekilde T çok genel bir type oluyor. random bir yerde int de yazsa kabul edeblr. dolayısıyla sadece T değl başka aşağıdaki şekilde yapılandırmamız lazım. (Generic constraint)
  //class: reference tip

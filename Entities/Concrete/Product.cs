@@ -1,4 +1,4 @@
-﻿using Entities.Abstract;
+﻿using Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete
 {
+    //Entities Concrete katmanında nesneler oluşturuldu.    
     public class Product:IEntity
     {
         public int ProductId { get; set; }
