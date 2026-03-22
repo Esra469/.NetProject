@@ -1,6 +1,7 @@
 ﻿using Core.DataAccess.EntityFramework;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,8 +13,25 @@ using System.Threading.Tasks;
 namespace DataAccess.Concrete.EntityFramework
 {
     //NuGet -core.sql kurduk
-    public class EfProductDal : EfEntityRepositoryBase<Product,NorthwindContext>,IProductDal//bu şekilde yaparak veri tabanı operasyonlarını yazmaya hazır oluruz.
+    public class EfProductDal : EfEntityRepositoryBase<Product, NorthwindContext>, IProductDal//bu şekilde yaparak veri tabanı operasyonlarını yazmaya hazır oluruz.
     {
-       
+        public List<ProductDetailDto> GetProductDetails()
+        {
+            using (NorthwindContext context=new NorthwindContext())
+            {
+                var result = from p in context.Products
+                             join c in context.Categories
+                             on p.CategoryId equals c.CategoryID
+                             select new ProductDetailDto
+                             {
+                                 ProductId = p.ProductId,
+                                 ProductName = p.ProductName,
+                                 CategoryName = c.CategoryName,
+                                 UnitsInStock = p.UnitsInStock
+                             };
+                return result.ToList();
+            }
+
+        }
     }
 }

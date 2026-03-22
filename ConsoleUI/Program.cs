@@ -11,6 +11,12 @@ namespace ConsoleUI
         {
             //Ben inmemory çalışacağım
             //ProductTest();
+           // CategoryTest();
+
+        }
+
+        private static void CategoryTest()
+        {
             CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
             foreach (var category in categoryManager.GetAll())
             {
@@ -25,6 +31,15 @@ namespace ConsoleUI
             foreach (var product in productManager.GelAllByCategoryId(2))//2 kategorisindeki ürünleri alır.
             {
                 Console.WriteLine(product.ProductName);
+            }
+        }
+        private static void ProductsTest()
+        {
+            ProductManager productManager = new ProductManager(new EfProductDal());
+
+            foreach (var product in productManager.GetProductDetailDtos())//2 kategorisindeki ürünleri alır. Bunu düzenle
+            {
+                Console.WriteLine(product.ProductName+"/"+product.CategoryName);
             }
         }
     }

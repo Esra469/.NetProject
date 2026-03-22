@@ -2,6 +2,7 @@
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,11 @@ namespace Business.Concrete
         {
             //iş kodları
             return _ProductDal.GetAll();
+        }
+
+        public List<ProductDetailDto> GetProductDetailDtos()
+        {
+            return _ProductDal.GetProductDetails();
         }
     }
 }

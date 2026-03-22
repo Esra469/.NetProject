@@ -1,5 +1,6 @@
 ﻿using Core.DataAccess;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace DataAccess.Abstract
     //product tablosunu dalını yazıyoruz. Data access layour demek.
     public interface IProductDal:IEntityRepository<Product>
     {
-        
+        List<ProductDetailDto> GetProductDetails(); 
        
     }
 }
