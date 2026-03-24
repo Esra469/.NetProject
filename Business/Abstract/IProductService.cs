@@ -13,12 +13,12 @@ namespace Business.Abstract
     public interface IProductService
     {
         //ampulden using categoty entites ekledik,bağlı olan folderler
-        List<Product> GetAll();
-        List<Product> GelAllByCategoryId(int id);
-        List<Product> GelAllByUnitPrice(decimal min, decimal max);
-        List<ProductDetailDto> GetProductDetailDtos();
+        IDataResult<List<Product>> GetAll();
+        IDataResult<List<Product>> GelAllByCategoryId(int id);
+        IDataResult<List<Product>> GelAllByUnitPrice(decimal min, decimal max);
+        IDataResult<List<ProductDetailDto>> GetProductDetailDtos(); //IDataResult hangi tip olarak belirteceğimize yardımıcı olur.
 
-        Product GetById(int productId);
-        IResult Add(Product product);
+        IDataResult<Product> GetById(int productId);
+        IResult Add(Product product); //IResult void yerine yazıldı.
     }
 }

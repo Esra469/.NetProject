@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
@@ -28,10 +29,10 @@ namespace Business.Concrete
 
             if (product.ProductName.Length < 0)
             {
-                return new errorResult("ürün ismi en az 2 karakter olmalıdır.");
+                return new ErrorResult(Messages.ProductNameInvalid);
             }
             _productDal.Add(product);
-            return new SuccessResult("Ürün Eklendi");
+            return new SuccessResult(Messages.ProductAdded);
 
 
         }
@@ -48,10 +49,14 @@ namespace Business.Concrete
         }
 
 
-        public List<Product> GetAll()
+        public IDataResult<List<Product>> GetAll()
         {
+            if (DateTime.Now.Hour == 22)
+            {
+                return new ErrorResult();
+            }
             //iş kodları
-            return _productDal.GetAll();
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(),true,"Ürünler listelendi");
         }
 
         public Product GetById(int productId)
