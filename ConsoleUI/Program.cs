@@ -11,7 +11,7 @@ namespace ConsoleUI
         {
             //Ben inmemory çalışacağım
             //ProductTest();
-           // CategoryTest();
+            // CategoryTest();
 
         }
 
@@ -33,16 +33,16 @@ namespace ConsoleUI
         //        Console.WriteLine(product.ProductName);
         //    }
         //}
-        /*/
+        
         private static void ProductsTest()
         {
             ProductManager productManager = new ProductManager(new EfProductDal());
-            var result = productManager.GetProductDetailDtos().Data;
-            if(result.Success==true )
+            var result = productManager.GetProductDetails();
+            if (result.Success == true)
             {
                 foreach (var product in result.Data)
                 {
-                    Console.WriteLine(product.ProductName+ "/"+product.CategoryName);
+                    Console.WriteLine(product.ProductName + "/" + product.CategoryName);
                 }
             }
             else
@@ -50,6 +50,6 @@ namespace ConsoleUI
                 Console.WriteLine(result.Message);
             }
         }
-        */
+
     }
 }

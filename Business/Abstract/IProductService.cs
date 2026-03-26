@@ -16,7 +16,7 @@ namespace Business.Abstract
         IDataResult<List<Product>> GetAll();
         IDataResult<List<Product>> GelAllByCategoryId(int id);
         IDataResult<List<Product>> GelAllByUnitPrice(decimal min, decimal max);
-        IDataResult<List<ProductDetailDto>> GetProductDetailDtos(); //IDataResult hangi tip olarak belirteceğimize yardımıcı olur.
+        IDataResult<List<ProductDetailDto>> GetProductDetails(); //IDataResult hangi tip olarak belirteceğimize yardımıcı olur.
 
         IDataResult<Product> GetById(int productId);
         IResult Add(Product product); //IResult void yerine yazıldı.

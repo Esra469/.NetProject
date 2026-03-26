@@ -51,7 +51,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Product>> GetAll()
         {
-            if (DateTime.Now.Hour == 22)
+            if (DateTime.Now.Hour == 1)
             {
                 return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
             }
@@ -59,12 +59,17 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(),Messages.ProductsListed);
         }
 
+
+
+
         public IDataResult<Product> GetById(int productId)
         {
             return new SuccessDataResult<Product> (_productDal.Get(p=>p.ProductId==productId));
         }
 
-        public IDataResult<List<ProductDetailDto>> GetProductDetailDtos()
+       
+
+        public IDataResult<List<ProductDetailDto>> GetProductDetails()
         {
             return new SuccessDataResult<List<ProductDetailDto>> (_productDal.GetProductDetails());
         }
