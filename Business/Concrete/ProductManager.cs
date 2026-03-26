@@ -51,7 +51,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Product>> GetAll()
         {
-            if (DateTime.Now.Hour == 1)
+            if (DateTime.Now.Hour == 1)//burada 1 olmasının sebebi saate göre ayaladık. saatin ileisinde verirsem errormessage döndürür.
             {
                 return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
             }

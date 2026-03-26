@@ -1,7 +1,18 @@
+using Business.Abstract;
+using Business.Concrete;
+using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddControllers();
+
+//Autofac,Ninject,StructureMap -->IoC container
+// Baðýmlýlýklarý (Dependency Injection) buraya ekliyoruz: startup dosyasý yerine buraya yerleþtirdim
+builder.Services.AddSingleton<IProductService,ProductManager>();
+builder.Services.AddSingleton<IProductDal, EfProductDal>();
 
 var app = builder.Build();
 
