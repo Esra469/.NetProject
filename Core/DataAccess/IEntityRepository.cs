@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-//core klasöründe kullanacağımız tüm temel yapıları kuracağız. ilk iş olarak DataAccess altındaki abstract altındaki IEntitiyRepository i core altındaki DataAccess klasörüne taşıdık.
+//core klasöründe kullanacağımız tüm temel yapıları kuracağız. ilk iş olarak DataAccess altındaki abstract altındaki IEntitiyRepository i core altındaki DataAccess klasörüne taşıdık. çünkü bu class aslında genel tek bir classa hitap etmediği için core de olabilir.
 namespace Core.DataAccess
 {
  //Bu şekilde T çok genel bir type oluyor. random bir yerde int de yazsa kabul edeblr. dolayısıyla sadece T değl başka aşağıdaki şekilde yapılandırmamız lazım. (Generic constraint)

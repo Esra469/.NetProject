@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 namespace Business.Concrete
 {
     //bir iş sınıfı başka sınıfları new lemez -> kural//onun yerine _ (alt çizgi kullanır. injection)
+    //_ (alt çizgi kullanımıda yani constructor çağırmamızda amacımız direkt classı kullanmak değil onun üzerinden onun muş gibi işlem yapmaktır.)
     public class ProductManager : IProductService
     {
         IProductDal _productDal;
@@ -33,7 +34,6 @@ namespace Business.Concrete
             }
             _productDal.Add(product);
             return new SuccessResult(Messages.ProductAdded);
-
 
         }
 

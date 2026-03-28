@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {    //data accessin entitiese bağlı olduğunu bu şekilde belirtiyoruz.Dataaccess altında dependencies altına entities geldi., IEntitiesRepositorye yolladık
-    //product tablosunu dalını yazıyoruz. Data access layour demek.
-    public interface IProductDal:IEntityRepository<Product>
+    //product tablosunu dalını yazıyoruz. Data access layourt demek.
+    public interface IProductDal:IEntityRepository<Product>//<T> where diye belirttik ve koşullar koyduk bundan dolayı sadece product diyebilirz tipine.
     {
         List<ProductDetailDto> GetProductDetails(); 
        
