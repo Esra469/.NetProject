@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
@@ -9,6 +10,7 @@ using Entities.DTOs;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,18 +28,14 @@ namespace Business.Concrete
             _productDal = productDal;
         }
 
+        [Validate]
         public IResult Add(Product product)
         {
             //business codes
             //validation doğrulama kodu ve iş kodu farklı -burada yazdığımız kodları product validationa attık.
-            var context=new ValidationContext<Product>(product);
-            ProductValidator productValidator = new ProductValidator();
-            var result=productValidator.Validate(context);
-            if(!result.IsValid)
-            {
-                throw new ValidationException(result.Errors);
-            }
-          
+           
+            ValidationTool.Validate(new ProductValidator(), product);
+
             _productDal.Add(product);
             return new SuccessResult(Messages.ProductAdded);
 
