@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddControllers();
 
-//autofac burdan alsýn diye kendi mimarisini deðil bizimkini kullansýn istedik.
+//autofac burdan alsýn diye kendi mimarisini deðil bizimkini kullansýn istedik. kendi IoC var ama biz farklý kullanýyoruz.
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 
 builder.Host.ConfigureContainer<ContainerBuilder>(options =>
