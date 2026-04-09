@@ -28,13 +28,14 @@ namespace Business.Concrete
             _productDal = productDal;
         }
 
-        [Validate]
+        [ValidationAspect(typeof(ProductValidator))]// add metodunu doğrula productValidator daki kurallara göre demek oluyor 
         public IResult Add(Product product)
         {
             //business codes
             //validation doğrulama kodu ve iş kodu farklı -burada yazdığımız kodları product validationa attık.
-           
-            ValidationTool.Validate(new ProductValidator(), product);
+
+            //[ValidationAspect(typeof(ProductValidator))] bunu eklediğimiz için aşağıdaki kod egele oldu 
+            //ValidationTool.Validate(new ProductValidator(), product);
 
             _productDal.Add(product);
             return new SuccessResult(Messages.ProductAdded);
