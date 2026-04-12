@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -21,15 +22,20 @@ namespace Business.Concrete
 
 
         //Buraya iş kodları yazılır.
-        public List<Category> GetAll()
+        public IDataResult<List<Category>> GetAll()
         {
-           return _categoryDal.GetAll();
+           return new SuccessDataResult<List<Category>>(_categoryDal.GetAll());
         }
 
         //select * from categories where categoryId=3 , aşağıdaki metod bunun gibi çalışıyor aslında
-        public Category GetById(int categoryId)
+        public IDataResult<Category> GetById(int categoryId)
         {
-            return _categoryDal.Get(c => c.CategoryID == categoryId);
+            return new SuccessDataResult<Category>(_categoryDal.Get(c => c.CategoryID == categoryId));
+        }
+
+        IDataResult<List<Category>> ICategoryService.GetAll()
+        {
+            throw new NotImplementedException();
         }
     }
 }

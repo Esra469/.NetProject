@@ -7,6 +7,7 @@ using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -27,12 +28,13 @@ namespace Business.Concrete
     public class ProductManager : IProductService
     {
         IProductDal _productDal;
-       
+        ICategoryService _categoryService;
 
-        public ProductManager (IProductDal productDal)
+        //Bir entity manager kendisi hariç başka dalı enjekte edemez. yani ben buraya istediğim gibi categoryDal yazamam. categoryservice kullanabilrm.
+        public ProductManager (IProductDal productDal,ICategoryService categoryService)
         {
             _productDal = productDal;
-            
+            _categoryService = categoryService;
         }
 
        [ValidationAspect(typeof(ProductValidator))]// add metodunu doğrula productValidator daki kurallara göre demek oluyor 
@@ -46,10 +48,10 @@ namespace Business.Concrete
             */
             //bu kuralla uygun kodu yaz
             //Aynı isimden ürün eklenemez.
-            //mevcut kategori 15 i geçişse artık kategori ekleme. 
+            //mevcut kategori 15 i geçişse artık yeni ürün eklenemez.
 
            IResult result= BusinessRules.Run(CheckIfProductCountOfCategoryCorrect(product.CategoryId),
-                CheckIfProductNameExist(product.ProductName));
+                CheckIfProductNameExist(product.ProductName),CheckCategoryLimitExceded());
 
             if (result != null)
             {
@@ -146,6 +148,14 @@ namespace Business.Concrete
             }
             return new SuccessResult();
         }
-        private IResult CheckIfCategoryCount()
+        private IResult CheckCategoryLimitExceded()
+        {
+            var result = _categoryService.GetAll();
+            if(result.Data.Count > 15)
+            {
+                return new ErrorResult(Messages.CategoryLimitExceded);
+            }
+            return new SuccessResult();
+        }
     }
 }
