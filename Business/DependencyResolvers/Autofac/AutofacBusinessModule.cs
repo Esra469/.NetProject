@@ -22,7 +22,8 @@ namespace Business.DependencyResolvers.Autofac
             //program.cs de belirtiğimiz bağımlılık aslında
             builder.RegisterType<ProductManager>().As<IProductService>().SingleInstance();//biri bizden Iproductservice isterse product manager yönlendir demek.
             builder.RegisterType<EfProductDal>().As<IProductDal>().SingleInstance() ;
-            builder.RegisterType<FileLogger>().As<ILogger>().SingleInstance() ;
+            builder.RegisterType<CategoryManager>().As<ICategoryService>().SingleInstance();
+            builder.RegisterType<EfCategoryDal>().As<ICategoryDal>().SingleInstance();
 
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
