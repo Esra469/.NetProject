@@ -20,5 +20,7 @@ namespace Business.Abstract
 
         IDataResult<Product> GetById(int productId);//Tek bir ürüne hitap ettiği için List<> diye belirtmemize gerek kalmadı
         IResult Add(Product product); //IResult void yerine yazıldı.
+
+        IResult Update(Product product);
     }
 }
