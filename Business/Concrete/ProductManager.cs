@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.CSS;
 using Business.ValidationRules.FluentValidation;
@@ -17,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 using ILogger = Business.CSS.ILogger;
@@ -37,7 +39,9 @@ namespace Business.Concrete
             _categoryService = categoryService;
         }
 
-       [ValidationAspect(typeof(ProductValidator))]// add metodunu doğrula productValidator daki kurallara göre demek oluyor 
+        //claim
+        [SecuredOperation("product.add")]
+        [ValidationAspect(typeof(ProductValidator))]// add metodunu doğrula productValidator daki kurallara göre demek oluyor 
         public IResult Add(Product product)
         //bussines code
 
